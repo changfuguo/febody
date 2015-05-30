@@ -11,6 +11,7 @@ var TopicSchema = new Schema({
         title        :   {type: String},
         content      :   {type: String},
         author_id    :   {type: ObjectId},
+        category_id  :   {type: ObjectId },
         top          :   {type: Boolean, default: false},
         good         :   {type: Boolean, default: false},
         reply_count  :   {type: Number, default: 0},

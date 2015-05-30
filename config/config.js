@@ -10,15 +10,15 @@ var config = {
     
             debug:true,
 
-            db : "mongodb://test:test@localhost:17017/test" ,  
+            db : "mongodb://febody:febody@localhost:17017/febody" ,  
             rootpath : rootPath ,
             name : "前端body",
             keywords:"javascript,html,css",
             port : 13003 ,
-            host :"localhost",
-            session_secret:'test', // session secret 
+            host :"http://182.92.98.242",
+            session_secret:'febody-session-secret', // session secret 
             session_timeout : 24 * 60 * 60,
-            auth_cookie_name:'testtesttest',              // powerful user name
+            auth_cookie_name:'febody',              // powerful user name
             //topic list count
             list_topic_count : 20 ,
             admins:{user_login_name : true },
