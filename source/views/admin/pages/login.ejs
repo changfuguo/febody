@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+	<meta charset="utf-8" />
+	<title>JIKER`s BLOG</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+	<meta content="" name="description" />
+	<meta content="" name="author" />
+	<meta name="MobileOptimized" content="320">
+	<!-- BEGIN GLOBAL MANDATORY STYLES -->          
+	<link href="/global/css/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+	<link href="/global/css/simple-line-icons/simple-line-icons.css" rel="stylesheet" type="text/css">
+	<link href="/global/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="/global/css/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+	<link href="/global/css/bootstrap-switch/css/bootstrap-switch.css" rel="stylesheet" type="text/css">
+	<link href="/admin/css/common/components.css" rel="stylesheet" type="text/css">
+	<link href="/admin/css/common/plugins.css" rel="stylesheet" type="text/css">
+	<link href="/admin/css/layout/layout.css" rel="stylesheet" type="text/css">
+	<link href="/admin/css/layout/themes/darkblue.css" rel="stylesheet" type="text/css">
+	
+	<!-- END GLOBAL MANDATORY STYLES -->
+	<!-- BEGIN PAGE LEVEL STYLES --> 
+	<!-- END PAGE LEVEL SCRIPTS -->
+	<!-- BEGIN THEME STYLES --> 
+	<link href="/admin/css/pages/login.css" rel="stylesheet" type="text/css"/>
+	<!-- END THEME STYLES -->
+	<link rel="shortcut icon" href="favicon.ico" />
+	<meta content="_csrf" name="csrf-param">
+	<meta content="<%= csrf %>" name="csrf-token"/>
+</head>
+<!-- BEGIN BODY -->
+<body class="login">
+	<!-- BEGIN LOGO -->
+	<div class="logo">
+		<img src="/global/img/logo.png" alt="FE<BODY>" /> 
+	</div>
+	<!-- END LOGO -->
+	<!-- BEGIN LOGIN -->
+	<div class="content">
+
+		<% if(typeof(error) != 'undefined' && error){%>
+			<div class="alert alert-error">
+				<strong><%= error%></strong>
+			</div>
+		<%}%>
+		<!-- BEGIN LOGIN FORM -->
+		<form class="login-form" action="/admin/login" method="post">
+			<input type='hidden' name='_csrf' value='<%= csrf %>'/>
+			<h3 class="form-title">麻溜输入账号</h3>
+			<div class="alert alert-error hide">
+				<button class="close" data-dismiss="alert"></button>
+				<span>账号请输入</span>
+			</div>
+			<div class="form-group">
+				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+				<label class="control-label visible-ie8 visible-ie9">尊姓大名</label>
+				<div class="input-icon">
+					<i class="fa fa-user"></i>
+					<input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="输入姓名啊" name="username"/>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label visible-ie8 visible-ie9">密     码</label>
+				<div class="input-icon">
+					<i class="fa fa-key"></i>
+					<input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="输入密码啦" name="password"/>
+				</div>
+			</div>
+			<div class="form-actions">
+				<label class="checkbox">
+				<input type="checkbox" name="remember" value="1"/> Remember me
+				</label>
+				<button type="submit" class="btn green pull-right">
+				Login <i class="m-icon-swapright m-icon-white"></i>
+				</button>            
+			</div>
+			</form>
+		<!-- END LOGIN FORM -->        
+	</div>
+	<!-- END LOGIN -->
+	<!-- BEGIN COPYRIGHT -->
+	<div class="copyright">
+		2013 &copy; Metronic. Admin Dashboard Template.
+	</div>
+	<!-- END COPYRIGHT -->
+	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+	<!-- BEGIN CORE PLUGINS -->   
+	<!--[if lt IE 9]>
+	<script src="assets/plugins/respond.min.js"></script>
+	<script src="assets/plugins/excanvas.min.js"></script> 
+	<![endif]-->   
+	<script src="/admin/js/jquery.all.min.js" type="text/javascript" ></script>
+	<!-- END CORE PLUGINS -->
+	<!-- BEGIN PAGE LEVEL SCRIPTS -->
+	<script src="/admin/js/login.js" type="text/javascript"></script> 
+	<!-- END PAGE LEVEL SCRIPTS --> 
+	<script>
+		jQuery(document).ready(function() {     
+		  Login.init();
+		});
+	</script>
+	<!-- END JAVASCRIPTS -->
+</body>
+<!-- END BODY -->
+</html>

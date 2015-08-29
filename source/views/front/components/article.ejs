@@ -1,0 +1,27 @@
+<!--start: Post -->
+     <article class="post-29 post type-post status-publish format-standard hentry category-uncategorized">
+		 <p class="post-date">
+			<span>31</span> 10 2014
+		</p>
+		 <div class="post-head">
+			 <h2 class="post-title">
+				<a href="/topic/<%= article._id %>" rel="bookmark" title="<%= article.title%>"><%= article.title%></a> 
+			</h2>
+			 <p class="post-meta">
+				<span>
+					<span class="icon author"></span>JSJIKER 
+				</span><%if(categories[article.category_id]){%> | 
+				<% var cate = categories[article.category_id];%>
+				<span>
+					<span class="icon cats"></span>
+					<a href="http://localhost/category/<%= cate.value%>" title="查看未分类中的全部文章" ><%= cate.name%></a>
+				</span><%}%> | 
+				<a href="/topic/<%= article._id %>#respond" class="comment-link"  title="<%= article.title%>">
+					<span class="icon comments"></span> <%= article.reply_count%>
+				</a> 
+			 </p>
+		 </div>
+		 <p><%= article.content.substr(0,200) %>一 [&hellip;]</p>
+	     <p class="more"><a href="/topic/<%= article._id%>"> </a></p>
+	</article>
+<!-- end post -->

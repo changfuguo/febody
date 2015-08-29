@@ -1,0 +1,14 @@
+<%- include('components/header')%>
+<div>
+<div class="main">
+
+<% if(articles.pageInfo.totalNumber>0){%>
+	<% articles.listInfo.forEach(function(article){%>
+			<%- include('components/article', {article: article,categories :categories}) %>		
+	<%})%>
+<%} else{%>
+	没有文章
+<%}%>
+</div>	
+</div>
+<%- include('components/footer')%>

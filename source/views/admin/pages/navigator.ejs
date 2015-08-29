@@ -1,0 +1,131 @@
+<!-- BEGIN BREADCRUMB -->
+<div class="page-bar" >
+	<div class="page-breadcrumb" ncy-breadcrumb></div>	
+</div>
+<!-- END BREADCRUMB -->
+
+<!-- BEGIN PAGE HEADER-->
+<!-- END PAGE HEADER-->
+<!-- BEGIN MAIN CONTENT -->
+<div class="row" >
+	<input type='hidden' name='_csrf' id= "_csrf"  value='<%=csrf%>'/>
+	<div class="col-md-6">
+		<div class="portlet light bordered">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs font-green-sharp"></i>
+					<span class="caption-subject font-green-sharp bold uppercase">
+					新增菜单 	
+					</span>
+                    <span class="caption-helper">根据类型选择</span>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<!-- start tabset-->
+				<tabset justified="true">
+					<tab heading="单页">
+					<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+								    <tr>
+										<th>
+											<input type="checkbox" class="group-checkable"  />
+										</th>
+										<th>
+											文章名称
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+								<tr ng-repeat="item in topics">
+									<td><input type="checkbox" class="checkboxes" value="1" /></td>
+									<td> 
+										<a href="/topic/{{item._id}}" target="_blank" ng-bind="item.title"></a>
+									</td>
+								</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="">
+							<pagination total-items="topicTotalNumber" ng-model="topicCurrentPage" max-size="4" class="pagination-sm"      boundary-links="true" rotate="false" num-pages="numPages" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+						</div>
+						<div class="form-actions fluid clearfix">
+							 <div class="col-md-offset-3 col-md-9">
+								 <button type="button" class="btn green pull-right">添加至菜单</button>
+							 </div>
+						</div>
+					</tab>
+					<tab heading="分类目录">
+						<div id="category_tree">
+						
+						</div>	
+						<div class="form-actions fluid clearfix">
+							 <div class="col-md-offset-3 col-md-9">
+								 <button type="button" class="btn green pull-right" ng-click='addCategoryToList()'>添加至菜单</button>
+							 </div>
+						</div>
+
+					</tab>
+					<tab heading="外部链接">
+					<form class="form-horizontal" role="form">
+						<div class="form-body">
+							<div class="form-group">
+								<label  class="col-md-3 control-label">URL:</label>
+								<div class="col-md-9">
+									 <input type="text" class="form-control"  placeholder="输入URL路径">
+									 <span class="help-block">完整的URL路径</span>
+								</div>
+							</div>
+							<div class="form-group">
+								<label  class="col-md-3 control-label">显示名:</label>
+								<div class="col-md-9">
+									 <input type="text" class="form-control"  placeholder="输入显示名称">
+								</div>
+							</div>
+							<div class="form-group">
+								<label  class="col-md-3 control-label">TIP名:</label>
+								<div class="col-md-9">
+									 <input type="text" class="form-control"  placeholder="输入TIP名">
+								</div>
+							</div>
+							<div class="form-actions fluid clearfix">
+								 <div class="col-md-offset-3 col-md-9">
+									 <button type="button" class="btn green pull-right" ng-click=''>添加至菜单</button>
+								 </div>
+							</div>
+						</div>
+					</form>
+					</tab>
+				</tabset>
+				<!-- end tabset-->
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="portlet light bordered">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs font-green-sharp"></i>
+					<span class="caption-subject font-green-sharp bold uppercase">编辑菜单</span>
+				</div>
+			</div>
+			<div class="portlet-body form">
+			<div class="menu_tree" id="menu_tree">
+			</div>
+			<form action="#" class="form-horizontal form-bordered">
+					<div class="form-body">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<a type="button" class="btn green pull-right" ng-click="save()"><i class="fa fa-check"></i>保存</a>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+<script>
+//	UITree.init(); // init todo page
+</script>

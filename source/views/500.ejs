@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<!-- 
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 3.0
+Version: 1.5.2
+Author: KeenThemes
+Website: http://www.keenthemes.com/
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes
+-->
+<!--[if IE 8]> <html lang="en" class="ie8 no-js"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9 no-js"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<head>
+   <meta charset="utf-8" />
+   <title>Metronic | Extra - 500 Page Option 2</title>
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+   <meta content="" name="description" />
+   <meta content="" name="author" />
+   <meta name="MobileOptimized" content="320">
+   <!-- BEGIN GLOBAL MANDATORY STYLES -->          
+   <!-- END GLOBAL MANDATORY STYLES -->
+   <!-- BEGIN THEME STYLES --> 
+   <link href="/global/css/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css">
+	<link href="/global/css/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css">
+	<link href="/global/css/uniform/css/uniform.default.css" rel="stylesheet" type="text/css">
+	<link href="/admin/css/common/plugins.css" rel="stylesheet" type="text/css">
+	<link href="/admin/css/layout/themes/darkblue.css" rel="stylesheet" type="text/css">
+   <li
+   <!-- END THEME STYLES -->
+   <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="page-500-full-page">
+   <div class="row">
+      <div class="col-md-12 page-500">
+         <div class=" number">
+            500
+         </div>
+		 <%var secs = 3;%>
+         <div class=" details">
+            <h3>出错了~</h3>
+			<% if(typeof(error) != 'undefined' && error){%>
+			<p><%= error%></p>
+			<%}%>
+			<%if(redirectUrl) {%>
+				<a href='<%=redirectUrl%>' target='_self' >点击这里跳转...(<span id='second'><%=secs%></span>)</a>
+				<script>
+					var second = document.getElementById('second');
+					var secs = <%=secs%>;
+					var handler = null;
+					handler = setInterval(function () {
+						second.innerHTML = secs--;
+						if(secs == 0){
+							clearInterval(handler);
+							window.location = '<%=redirectUrl%>';
+						
+						}
+					},1000);
+				</script>
+			<%}%>
+            <p>
+               已经记录，稍后抢修<br />
+               请稍候.<br /><br />
+            </p>
+         </div>
+      </div>
+   </div>
+   <!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+   <!-- BEGIN CORE PLUGINS -->   
+   <!--[if lt IE 9]>
+   <script src="assets/plugins/respond.min.js"></script>
+   <script src="assets/plugins/excanvas.min.js"></script> 
+   <![endif]-->   
+</body>
+<!-- END BODY -->
+</html>

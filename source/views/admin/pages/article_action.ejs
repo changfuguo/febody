@@ -1,0 +1,176 @@
+<!-- BEGIN BREADCRUMB -->
+<div class="page-bar" >
+    <div class="page-breadcrumb" ncy-breadcrumb></div>    
+</div>
+<!-- END BREADCRUMB -->
+<div class="row">
+    <div class="col-md-12">
+        <!--portlet begin -->
+            <div class="portlet light bordered">
+                <div class="portlet-body">
+                    <form class="form-horizontal" role="form">
+					<input type='hidden' name='_csrf' id= "_csrf"  value='<%=csrf%>'/>
+                        <div class="form-body">
+                            <div class="row">
+                                <!-- title begin -->
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label class="col-md-2 control-label">标题</label>
+                                        <div class="col-md-10">
+                                            <input type="text" class="form-control" required ng-model="topic.title"placeholder="输入标题">
+                                            <span class="help-block"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                 <!--title end-->
+                                <!--category begin-->
+                                <div class="col-md-6">
+                                    <div class="form-group ">
+                                        <label class="col-md-2 control-label">分类</label>
+                                        <div class="col-md-10">
+                                            <select class="form-control" ng-model="topic.category_id"  >
+												<option value="">无分类</option>
+												<option ng-repeat="m in categories" value="{{m.value}}"  ng-bind-html="m.name"></option>
+											<select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--category end-->
+                            </div>
+                            <!--content begin -->
+                            <div class="row">
+
+                                <div class="col-md-12">
+                                <!-- toolbar -->
+                                    <div class="btn-toolbar" style="margin: 5px 0;" role="toolbar">
+                                        <div class="btn-group" role="group">
+                                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="fa fa-header"></i>&nbsp;Heading
+                                            <span class="caret"></span>
+                                            </button>
+                                            <ul class="dropdown-menu" role="menu">
+                                                <li><a data-editorbtn="h1"><h1>Heading 1</h1></a></li>
+                                                <li><a data-editorbtn="h2"><h2>Heading 2</h2></a></li>
+                                                <li><a data-editorbtn="h3"><h3>Heading 3</h3></a></li>
+                                                <li><a data-editorbtn="h4"><h4>Heading 4</h4></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="First group">
+
+                                            <button type="button" data-editorbtn="bold" class="btn btn-default">
+                                                <i class="fa fa-bold"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="italic" class="btn btn-default">
+                                                <i class="fa fa-italic"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="strikethrough" class="btn btn-default">
+                                                <i class="fa fa-strikethrough"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="underline" class="btn btn-default">
+                                                <i class="fa fa-underline"></i>
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="Second group">
+                                            <button type="button" data-editorbtn="link" class="btn btn-default">
+                                                <i class="fa fa-link"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="image" class="btn btn-default">
+                                                <i class="fa fa-image"></i>
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="Third group">
+                                            <button type="button" data-editorbtn="list" class="btn btn-default">
+                                                <i class="fa fa-list-ul"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="table" class="btn btn-default">
+                                                <i class="fa fa-table"></i>
+                                            </button>
+                                        </div>
+                                        <div class="btn-group" role="group" aria-label="Third group">
+                                            <button type="button" data-editorbtn="undo" class="btn btn-default">
+                                                <i class="fa fa-undo"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="redo" class="btn btn-default">
+                                                <i class="fa fa-repeat"></i>
+                                            </button>
+                                        </div>
+
+                                        <div class="btn-group pull-right" role="group" aria-label="Third group">
+                                            <button type="button" data-editorbtn="fullscreen" class="btn btn-default">
+                                                <i class="fa fa-arrows-alt"></i>
+                                            </button>
+                                            <button type="button" data-editorbtn="eye" class="btn btn-default">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!-- end toolbar -->
+                                    <!-- markdown directive begin -->
+                                    <div ng-model="topic.content" ui-codemirror-markdown="editorOptions" style="margin: 5px 0;">
+                                    </div>
+                                    <!-- markdown directive end -->
+                                </div>
+                            </div>
+                            <!--content end -->
+							<!-- row 3 begin -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--tags  begin -->
+                                    <div class="form-group ">
+                                        <label class="col-md-2 control-label">标签</label>
+                                        <div class="col-md-10">
+                                            <input type="text"  ng-model="topic.tags" class="form-control">
+                                        </div>
+                                    </div>
+                                    <!--tags  end -->
+                                </div>
+                                <div class="col-md-6">
+                                    <!--istop  begin-->
+                                    <div class="form-group ">
+                                        <label class="col-md-2 control-label">置顶</label>
+										<div class="radio-list">
+											 <label class="radio-inline">
+												<input type="radio" name="istop"  ng-model="topic.top" value="1" ng-checked="!topic.top">是
+											 </label>
+											 <label class="radio-inline">
+												<input type="radio" name="istop"  ng-model="topic.top" ng-checked="!!topic.top" value="0" checked>否
+											 </label>
+										</div>
+                                    </div>
+                                    <!--istop end -->
+                                </div>
+                            </div>
+							<!-- row 3 end -->
+							<!-- row 4 begin -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <!--istop  begin-->
+                                    <div class="form-group ">
+                                        <label class="col-md-2 control-label">精华</label>
+										<div class="radio-list">
+											 <label class="radio-inline">
+												<input type="radio" name="isgood"  ng-model="topic.good" value="1" ng-checked="!topic.good">是
+											 </label>
+											 <label class="radio-inline">
+												<input type="radio" name="isgood"  ng-model="topic.good" ng-checked="!!topic.good" value="0" checked>否
+											 </label>
+										</div>
+                                    </div>
+                                    <!--istop end -->
+                                </div>
+                            </div>
+							<!-- row 4 end -->
+                        </div>
+
+						<!-- form btn begin  -->
+						<div class="form-actions text-right">
+							<button type="button" class="btn green" ng-click="save(0)">保存草稿</button>
+							<button type="button" class="btn green" ng-click="save(1)">保存发布</button>
+						</div>
+						<!-- form btn end -->
+                    </form>
+                </div>
+            </div>
+        <!--portlet end-->
+    </div>
+</div>

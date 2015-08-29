@@ -1,0 +1,11 @@
+<%# 评论部分开始%>
+<div class="comments">
+	<%if(commentsCount > 0) {%>
+	<h4>共有<%=commentsCount%>条评论</h4>
+	<%- include('comment',{comments:comments,level:1,tid:topic.id,tsp:0})%>
+	<%} else {%>
+	<h4> 暂无评论，坐下沙发?</h4>
+	<%}%>
+<%- include('reply_form')%>
+</div>
+<script src='/front/js/comment-reply.js' type="text/javascript"></script>

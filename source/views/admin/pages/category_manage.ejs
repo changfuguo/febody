@@ -1,0 +1,113 @@
+<!-- BEGIN BREADCRUMB -->
+<div class="page-bar" >
+	<div class="page-breadcrumb" ncy-breadcrumb></div>	
+</div>
+<!-- END BREADCRUMB -->
+
+<!-- BEGIN PAGE HEADER-->
+<!-- END PAGE HEADER-->
+<!-- BEGIN MAIN CONTENT -->
+<div class="row">
+	<div class="col-md-12">
+		<div class="form">
+			<div class="form-body">
+				<label class="col-md-3 control-label">选择分类域：</label>
+				<select ng-change="changeScope()" id ="scope"  ng-model="scope" class="form-control input-small">
+					<%for(var i =0;i<config.category_scopes.length;i++) {%>
+					<option value="<%= config.category_scopes[i].value%>"><%= config.category_scopes[i].name%></option>
+					<%}%>
+				</select>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row" >
+	<input type='hidden' name='_csrf' id= "_csrf"  value='<%=csrf%>'/>
+	<div class="col-md-6">
+		<div class="portlet light bordered">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs font-green-sharp"></i>
+					<span class="caption-subject font-green-sharp bold uppercase">
+						分类树
+					</span>
+				</div>
+			</div>
+			<div class="portlet-body">
+				<div id="treecategory" class="tree-demo">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="portlet light bordered">
+			<div class="portlet-title">
+				<div class="caption">
+					<i class="fa fa-cogs font-green-sharp"></i>
+					<span class="caption-subject font-green-sharp bold uppercase">Checkable Tree</span>
+				</div>
+			</div>
+			<div class="portlet-body form">
+			<form action="#" class="form-horizontal form-bordered">
+					<div class="form-body">
+						<div class="form-group">
+							<label class="control-label col-md-3">名字</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" maxlength="25" id ="name" ng-model="category.name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">值</label>
+							<div class="col-md-8">
+								<input type="text" class="form-control" maxlength="25" id="value" ng-model="category.value">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">父节点</label>
+							<div class="col-md-8">
+
+								<input type="hidden" id="parent_id"   ng-model="category.parent_name">
+								<input type="text" class="form-control"id="parent_name" readonly="true" ng-model="category.parent_name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">状态</label>
+							<div class="col-md-8">
+								<div class="radio-list">
+									<label class="radio-inline">
+										 <input type="radio" name="status"   ng-checked="!!category.status"  value="1" ng-model="category.status">启用
+
+									</label>
+									<label class="radio-inline">
+										 <input type="radio" name="status" value="0"  ng-checked ="!category.status" ng-model="category.status" >禁用
+									</label>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-md-3">排序</label>
+							<div class="col-md-9">
+								<input type="text" class="form-control"   ng-model="category.order" id ="order" > 
+							
+							</div>
+						</div>
+					</div>
+					<div class="form-actions">
+						<div class="row">
+							<div class="col-md-offset-3 col-md-9">
+								<a type="button" class="btn green" ng-click="save()"><i class="fa fa-check"></i>保存</a>
+								<a type="button" class="btn green"><i class="fa fa-check"></i>重填</a>
+								<a type="button" class="btn default">Cancel</a>
+							</div>
+						</div>
+					</div>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+<!-- END MAIN CONTENT -->
+<script>
+//	UITree.init(); // init todo page
+</script>

@@ -1,0 +1,39 @@
+<%- include('../components/header')%>
+<div>
+	<div class="main">
+		<article class="post">
+		<p class="post-date"><span><%- moment(topic.update_at).format('DD') %></span><%- moment(topic.update_at).format('MM YYYY') %></p>
+
+		<div class="post-head">
+			<h1><%=topic.title%></h1>
+			<p class="post-meta">
+			<span><span class="icon author"></span> febody</span> | 
+			<span><span class="icon views"></span> <%=topic.visit_count%></span> | 
+			<span><span class="icon cats"></span> <a href ="/category/<%=topic.cat_vaule %>" title="<%=topic.cat_name%>" ><%=topic.cat_name%> </span> |
+			<a href="#comments" class="comment-link" title=" 《<%=topic.title%>》上的评论"><span class="icon comments"></span> <%=topic.reply_count%></a>
+		</div>
+		  <%- markdown(topic.content) %>
+		<%if(topic.tags.length > 0) {%>
+		<p class="tags"><span class="icon tags"></span>
+			<%for(var i = 0 ;i < topic.tags.length;i++) {%>
+			<a href="/tag/<%= topic.tags[i]%>" rel="tag"><%=topic.tags[i]%></a>
+			<%}%>
+		</p>
+		<%}%>
+		<p class="pagination">
+			<span class="prev">
+				<a href="http://localhost/jsjiker/?p=29" rel="next">严禁团队的是直冒出息</a>
+			</span>
+			<span class="next">
+				<a href="http://localhost/jsjiker/?p=29" rel="next">严禁团队的是直冒出息</a>
+			</span>
+		</p>
+
+		<div id="comments">
+			<%- include('../components/comments',{comments:comments,moment:moment,markdown:markdown,tid:topic._id})%>
+		</div>
+	</article>
+
+	</div>	
+</div>
+<%- include('../components/footer')%>
