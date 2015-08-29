@@ -8,19 +8,44 @@
 
 var proxy = require('../proxy');
 
-var User = proxy.User ;
-var Topic = proxy.Topic ;
+var Menu = proxy.Menu;
+var Topic = proxy.Topic;
+var Category = proxy.Category;
+var q = require('q');
 var config = require('../../config/config');
 
-
+var log = require('log4js').getLogger('app');
 
 //index method
 
 exports.index = function(req, res, next){
-   
-   res.render('index',{
-        message :"hi yare here!"    
-       
-   });
+	
+	q.spread([Topic.query({status : 1}), Category.getList('article')],function(data,cates){
+		var categoires = {};
+		cates.forEach(function(v,i){
+			categoires[v._id] = {
+				id		:	v._id ,
+				name	:	v.name ,
+				value	:	v.value
+			};
+				
+		})
+		res.render('front/index',{articles :data, menus:res.locals.menus,categories : categoires});
+	})
 }
+
+//get topic by categories
+exports.getTopicsByCategory = function(req, res, next){
+
+		res.send('aa')
+}
+
+
+//get topic by id 
+
+exports.getTopicById = function(req, res, next){
+
+	res.render('front/pages/topic');
+}
+
 

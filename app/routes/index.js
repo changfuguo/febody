@@ -5,11 +5,11 @@
 *
 */
 
-var cIndex = require('../controller/index');
 
+var cIndex = require('../controller/index'),
+	tplHelper = require('../../components/template');
 module.exports = function(app){
 
     //app.get 
     app.get('/', cIndex.index);
-
 }

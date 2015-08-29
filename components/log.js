@@ -1,14 +1,13 @@
 /**
 * log for node
 * author:changfuguo
-* date  :2014-01-18
+* date  :2015-08-02
 */
 
 
 var log4js = require('log4js');
 
 var path  = require('path');
-
 //configuration
 
 log4js.configure({
@@ -19,28 +18,30 @@ log4js.configure({
         },{
             category:'console',
             type    :'file',
-            filename:path.resolve(__dirname ,'../logs/','console.log'),
+            filename:path.resolve(__dirname ,'../logs/','access.log'),
             maxLogSize :  1024 * 1024 ,
             backups : 1
         },{
             type : 'file',
-            filename : path.resolve(__dirname ,'../logs/','trace.log'),
+            filename : path.resolve(__dirname ,'../logs/','febody.log'),
             maxLogSize : 1024 * 1024 ,
             backups : 10,
-            category :'trace'
+            category :'febody'
                
         },{
             type : 'dateFile',
-            filename :path.resolve(__dirname ,'../logs/','error.log'),
+            filename :path.resolve(__dirname ,'../logs/','febody.err.log'),
             alwaysIncludePattern: true,
             pattern:'_yyyy-MM-dd.log',
-            category :'error'
+            category :'febody_err'
             
         } 
     ],
     replaceConsole:false,
     levels : {
-        'console':'info'
+        'access':'info',
+		'febody':'info',
+		'febody_arr':'warn'
     }
 });
 
@@ -52,13 +53,8 @@ exports.use = function(app){
 
 }
 
-
-exports.log = function(name){
-
-    var logger = log4js.getLogger(name);
-    logger.setLevel('INFO');
-    return logger;
-}
+var app = log4js.getLogger('febody');
+var error = log4js.getLogger('febody_err');
 
 
 

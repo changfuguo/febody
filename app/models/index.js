@@ -7,9 +7,6 @@
 var mongoose = require('mongoose');
 var config = require('../../config/config');
 var fs = require('fs');
-var log = require('../../components/log');
-var err_log = log.log('error');
-var trc_log = log.log('trace');
 
 /**
 * connect to mongodb
@@ -25,8 +22,6 @@ var connect = function(){
 //connect error handler
 
 mongoose.connection.on('error',function(err){
-
-    err_log.error('db-error:mongoose connection error:' + err); 
 });
 
 //reconnect when colosed
@@ -37,7 +32,6 @@ mongoose.connection.on('disconnected', function(){
     
     connect();
     if(reconnect_count > MAX_RECONNECT_COUNTER){
-        err_log.error('db-reconnect:mongoose connected up to maxcount'); 
         process.exit(1);
         reconnect_count = 0;
     } 
@@ -49,7 +43,6 @@ mongoose.connection.on('disconnected', function(){
 //on connected 
 
 mongoose.connection.on('connected', function(){
-    trc_log.info('db-connected:');
 });
 
 

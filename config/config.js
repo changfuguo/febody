@@ -26,6 +26,8 @@ var config = {
                 path:path.join(rootPath,'/public/uploads/'),
                 url : '/public/uploads/'
             }
+			,menuPath : rootPath + 'config/menu.json'
+			,category_scopes :[{name:"文章类",value:"article"},{name:"权限类",value:"permission"}]
 }
 
 
