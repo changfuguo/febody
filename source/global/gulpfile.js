@@ -77,7 +77,12 @@ gulp.task('copy-fonts',function (){
 			.pipe(gulp.dest('./fonts/'))
 })
 
+gulp.task('less',function (){
+	return gulp.src('./css/**/bootstrap-markdown.less')
+				.pipe(less())
+				.pipe(gulp.dest('./css'))
 
+})
 
 gulp.task('default',function (){
 
