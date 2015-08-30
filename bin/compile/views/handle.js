@@ -7,8 +7,7 @@ exports.replaceEjs = function () {
 	var dest = this.build + "/" + folder.views + '/';
 	var jsonPath = this.build + '/rev/**/*.json';
 	gulp.task(folder.views + '-clean-ejs', function (){
-		gulp.src([that.build + '/' +  folder.views + '/**/*.ejs'])
-			.pipe($.clean({force:true}))
+		$.shelljs.rm('-rf',that.build + '/' +  folder.views + '/');
 	})
 	gulp.task(folder.views + '-preprocess-ejs',[folder.views + '-clean-ejs'],function (){
 		gulp.src([ jsonPath , source + '**/*.ejs' ])

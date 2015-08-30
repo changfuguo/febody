@@ -13,8 +13,7 @@ exports.compressJs = function () {
 	// first clean
 
 	gulp.task(folder.admin + '-clean-js',function (){
-		gulp.src(that.build + '/' + folder.admin + '/js/**/*.js',{read:false})
-			.pipe($.clean({force: true}))
+		$.shelljs.rm('-rf',that.build + '/' +  folder.admin + '/js/');
 	})
 	gulp.task(folder.admin + '-preprocess-js',[folder.admin + '-clean-js'],function (){
 		gulp.src([source + '**/*.js' , '!' + source + '**/*/app.js'])
@@ -42,8 +41,7 @@ exports.copyImages = function (){
 	var source  = this.source + "/" + folder.admin + '/img/';
 	var dest = this.build + "/" + folder.admin + '/img/';
 	gulp.task(folder.admin + '-clean-img',function (){
-		gulp.src(that.build + '/' + folder.admin + '/img/**/*.*',{read:false})
-			.pipe($.clean({force: true}))
+		$.shelljs.rm('-rf',that.build + '/' +  folder.admin + '/img/');
 	})
 
 	gulp.task(folder.admin + '-copy-img',[folder.admin + '-clean-img'],function (){
@@ -67,8 +65,7 @@ exports.copyFonts = function (){
 	var source  = this.source + "/" + folder.admin + '/fonts/';
 	var dest = this.build + "/" + folder.admin + '/fonts/';
 	gulp.task(folder.admin + '-clean-fonts',function (){
-		gulp.src(that.build + '/' + folder.admin + '/fonts/**/*.*',{read:false})
-			.pipe($.clean({force: true}))
+		$.shelljs.rm('-rf',that.build + '/' +  folder.admin + '/fonts/');
 	})
 	gulp.task(folder.admin + '-copy-fonts',[folder.admin + '-clean-fonts'],function (){
 		gulp.src([source + '**/*'])
@@ -93,8 +90,7 @@ exports.compressCss = function () {
 	var source  = this.source + "/" + folder.admin + '/css/';
 	var dest = this.build + "/" + folder.admin + '/css/';
 	gulp.task(folder.admin + '-clean-css',function (){
-		gulp.src(that.build + '/' + folder.admin + '/css/**/*.css',{read:false})
-			.pipe($.clean({force: true}))
+		$.shelljs.rm('-rf',that.build + '/' +  folder.admin + '/css/');
 	})
 
 	var jsonPath = this.build + '/rev/**/*.json';

@@ -31,7 +31,7 @@ var folder = {
 	views: "views"
 }
 
-var shelljs = require('shelljs/global')
+var shelljs = require('shelljs')
 /*
  * 动态加载js脚本
  *
@@ -40,6 +40,7 @@ $.gulp = gulp;
 var runSequence = require('run-sequence');
 runSequence.use(gulp);
 $.runSequence = runSequence;
+$.shelljs = shelljs;
 /*
 for(var attr in $){
 	if(attr.toLowerCase().indexOf('rev') >=0 ){
@@ -96,11 +97,11 @@ var model = {} ;
 
 gulp.task('copy',function () {
 	console.log(build);
-	cd(build);
-	cp('-Rf','./global',publish);
-	cp('-Rf','./admin',publish);
-	cp('-Rf','./front',publish);
-	cp('-Rf','./views' ,apppath);
+	shelljs.cd(build);
+	shelljs.cp('-Rf','./global',publish);
+	shelljs.cp('-Rf','./admin',publish);
+	shelljs.cp('-Rf','./front',publish);
+	shelljs.cp('-Rf','./views' ,apppath);
 })
 
 gulp.task('default',function (callback){
