@@ -15,9 +15,7 @@ exports.replaceEjs = function () {
 			.pipe($.plumber())
 			.on('error',$.util.log)
 			.pipe($.size({showFiles:that.size}))			
-			.pipe($.revCollector({
-				replaceReved: true
-			}))  // replace img
+			.pipe($.revCollector())  // replace img
 			.pipe(gulp.dest(that.build + '/' +  folder.views + '/'))
 	})
 }

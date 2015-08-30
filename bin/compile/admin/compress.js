@@ -2,10 +2,6 @@
  * 1、压缩
  * 2、生成sourcemap
  * 3、生成md5映射文件表
- *
- *
- *
- *
  */
 
 exports.compressJs = function () {
@@ -108,9 +104,7 @@ exports.compressCss = function () {
 			.pipe($.plumber())
 			.pipe($.rev())
 			.on('error',$.util.log)
-			.pipe($.revCollector({
-				replaceReved: true
-			}))  // replace img
+			.pipe($.revCollector())  // replace img
 			.pipe($.minifyCss())
 			.pipe($.size({showFiles:that.size}))
 			.pipe(gulp.dest(that.build + '/' +  folder.admin + '/css/'))

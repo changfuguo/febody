@@ -109,9 +109,7 @@ exports.compressCss = function () {
 			.pipe($.plumber())
 			.pipe($.rev())
 			.on('error',$.util.log)
-			.pipe($.revCollector({
-				replaceReved: true
-			}))  // replace img
+			.pipe($.revCollector())
 			.pipe($.minifyCss())
 			.pipe($.size({showFiles:that.size}))
 			.pipe(gulp.dest(that.build + '/' +  folder.global + '/css/'))
@@ -124,7 +122,7 @@ exports.run = function (){
 	var $ = this.$ ,gulp = $.gulp,that = this;
 	var folder = this.folder;
 	gulp.task(folder.global + '-compress',function (callback) {
-		$.runSequence([folder.global + '-copy-img',folder.global + '-copy-fonts'],
-			[folder.global + '-preprocess-js'],[folder.global + '-preprocess-css'],callback);			
+		$.runSequence(folder.global + '-copy-img',folder.global + '-copy-fonts',
+			folder.global + '-preprocess-js',folder.global + '-preprocess-css',callback);			
 	})
 }
