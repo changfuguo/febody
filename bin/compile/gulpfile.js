@@ -50,7 +50,7 @@ for(var attr in $){
 */
 
 
-var app = {$:$,source:source,build:build, folder: folder,debug:debug,size:false};
+var app = {$:$,source:source,build:build,publish:publish, folder: folder,debug:debug,size:false};
 
 
 function loadJs(road) {
@@ -96,7 +96,10 @@ var model = {} ;
 
 
 gulp.task('copy',function () {
-	console.log(build);
+	shelljs.cd(publish);
+	shelljs.rm("-rf",'./global');
+	shelljs.rm("-rf",'./admin');
+	shelljs.rm("-rf",'./front');
 	shelljs.cd(build);
 	shelljs.cp('-Rf','./global',publish);
 	shelljs.cp('-Rf','./admin',publish);

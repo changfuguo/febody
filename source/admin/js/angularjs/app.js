@@ -270,7 +270,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
 							'/global/css/jstree/dist/themes/default/style.css',
-							'/global/js/plugins/jstree/dist/jstree.js',
+							'/global/js/jstree/dist/jstree.js',
 							'/admin/js/angularjs/controllers/CategoryManageController.js',
 							'/admin/js/angularjs/models/CategoryModel.js'
                         ] 
