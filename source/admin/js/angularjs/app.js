@@ -296,7 +296,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         files: [
 							'/global/css/jstree/dist/themes/default/style.css',
 							'/admin/css/layout/angular-ui-tree.min.css',
-							'/global/js/plugins/jstree/dist/jstree.js',
+							'/global/js/jstree/dist/jstree.js',
 							'/admin/js/angularjs/angular-ui-tree.js',
 							'/admin/js/angularjs/models/CategoryModel.js',
 							'/admin/js/angularjs/controllers/NavigatorController.js'
@@ -348,6 +348,7 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         name: 'MetronicApp',
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
+							'/global/js/moment/moment.js',
 							'/admin/js/angularjs/models/TopicModel.js',
 							'/admin/js/angularjs/models/CategoryModel.js'
                         ] 
@@ -376,7 +377,8 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
                         files: [
 							'/global/css/codemirror/lib/codemirror.css',
-							'/global/css/highlight/styles/monokai.css',
+							'/global/css/highlight/css/monokai.css',
+							'/admin/css/pages/ui-codemirror-markdown-editor.css',
 							'/admin/js/angularjs/models/TopicModel.js',
 							'/admin/js/angularjs/models/CategoryModel.js'
                         ] 
@@ -386,7 +388,6 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
                         files: [
 							'/admin/js/angularjs/controllers/ArticleActionController.js',
 							'/global/js/marked/marked.js',
-							'/global/js/codemirror/lib/codemirror.js',
 							'/global/js/codemirror/addon/edit/continuelist.js',
 							'/global/js/codemirror/addon/mode/overlay.js',
 							'/global/js/codemirror/mode/xml/xml.js',
@@ -402,6 +403,34 @@ MetronicApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvi
 				parent:"article"
 			}
 		})
+		.state('comments_list',{
+			url:"/comments/topic/{id}",
+			templateUrl: "/admin/gettemplate!pages/comments_list.html",
+            data: {pageTitle: '文章列表'},
+            controller: "CommentsListController",
+            resolve: {
+                deps: ['$ocLazyLoad', function($ocLazyLoad) {
+                    return $ocLazyLoad.load([{
+                        name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+							'/admin/js/angularjs/models/CommentModel.js',
+							'/global/js/moment/moment.js'
+                        ] 
+               		},{
+					    name: 'MetronicApp',
+                        insertBefore: '#ng_load_plugins_before', // load the above css files before '#ng_load_plugins_before'
+                        files: [
+							'/admin/js/angularjs/controllers/CommentsListController.js'
+                        ] 
+					}]);
+                }] 
+            },ncyBreadcrumb:{
+				label :"{{form_title}}",
+				parent:"article"
+			}
+		})
+
 }]);
 
 /* Init global settings and run the app */

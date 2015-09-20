@@ -211,12 +211,12 @@ h6 a:hover {
 }
 
 blockquote {
-    margin: 1.5em 0;
+    margin: 1em 0;
     padding: 10px 20px; 
     border: 1px solid #e8e8e8; 
     background: #fafbfb; 
-    color: #888; 
-    font-style: italic;
+    color: #888;
+	border-left: 4px solid #ddd;
 }
 
 sub, 
@@ -591,12 +591,12 @@ section >div {
 
 
 .main {
-  float: left;
-  margin-bottom: 0;
-  overflow: hidden;
-  padding: 15px 35px 30px;
-   width: 62%;
-  margin-right: -35px;
+	float: left;
+	margin-bottom: 0;
+	overflow: hidden;
+	padding: 15px 0 30px 35px;
+	width: auto;
+	margin-right: 35px;
 }
 
 aside  {
@@ -873,7 +873,9 @@ h2.post-title {
 .post-head {
     overflow: hidden;
 }
-
+.post p {
+	line-height:1.7;
+}
 p.post-date {
     float: left; 
     width: 60px; 
@@ -958,10 +960,12 @@ p.more a {
 
 p.tags {
     float: left;
-    margin-top: 0;
-    font-size: 0.857em;
+    margin-top: 1em;
+    font-size: 1.2em;
 }
-
+p.tags a{
+	margin-right:15px;
+}
 div.post.sticky p {
     color: #505355;
 }
@@ -1034,7 +1038,9 @@ img.avatar {
     margin-bottom: 15px; 
     font-weight: bold;
 }
-
+.comment-author {
+	padding-right:35px;
+}
 .reply a:hover {
     text-decoration: none;
 }
@@ -1284,7 +1290,17 @@ p.comment-form-comment label {
 }
 
 section pre {
-    overflow: auto; width: 610px;
+    overflow: auto; 
+	background-color: #f8f8f8;
+	border: 1px solid #ddd;
+	font-size: 12px;
+	line-height: 18px;
+	overflow: auto;
+	padding: 6px 10px;
+	border-radius: 3px;
+	word-break: break-all;
+	word-wrap: break-word;
+	-webkit-overflow-scrolling: touch;
 }
 
 .engine {

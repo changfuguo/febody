@@ -173,8 +173,12 @@ exports.getList = function(req,res,next){
 	condition.currentPage = currentPage ;
 
 	condition.status = status ;
-	condition.top = top ;
-	condition.good = good ;
+	if	(!!top) {
+		condition.top = top ;
+	}
+	if	(!!good) {
+		condition.good = good ;
+	}
 	condition.context = text;
 	condition.category_id = category_id;
 	if(moment(start_date).isValid()){
@@ -211,7 +215,6 @@ exports.getList = function(req,res,next){
  **/
 
 exports.update = function(req,res,next){
-	console.log(req.body);
 	var title = validator.trim(req.body.title);
 	var content = req.body.content ;
 	var top = req.body.top ? 1 : 0 ;
@@ -225,13 +228,15 @@ exports.update = function(req,res,next){
 	//save to db 
 	var topic = {};
 	topic._id = _id ;
-	topic.title = title ;
+	topic.title = title;
+	topic.status = status == 1 ? 1 : 0; 
 	topic.content = content ;
 	topic.top = top ? true :false;
 	topic.good = good ? true :false;
 	topic.tags = tags ;
-	Topic.update(topic._id,topic)
-		.then(function(t){
+	topic.status = status;
+	Topic.update(topic._id, topic)
+		.then(function(t,item){
 			res.status(200).json({
 				errno : 0 ,
 				message :""
@@ -251,9 +256,7 @@ exports.update = function(req,res,next){
 exports.get = function(req, res, next){
 
 	var id = req.params.id;
-
 	Topic.getTopicById(id)
-	
 		.then(function(topic){
 			if(topic){
 				res.status(200).json({errno : 0 ,data: topic, message: ''});
@@ -271,11 +274,48 @@ exports.get = function(req, res, next){
  */
 
 exports.delete = function(req,res,next){
+	var id = req.body.id;
+	var topic = {};
+	topic._id = id;
+	topic.status = -1;
+	Topic.update(topic._id,topic)
+		.then(function(t){
+			res.status(200).json({
+				errno : 0 ,
+				message :""
+			})
 
+		},function(err){
+			res.status(200).json({
+				errno : 1 ,
+				message:err
+			})
+	});
 }
+/*
+ * publish
+ *
+ */
 
+exports.publish = function(req,res,next){
+	var id = req.body.id;
+	var topic = {};
+	topic._id = id;
+	topic.status = 1 ;
+	Topic.update(topic._id,topic)
+		.then(function(t){
+			res.status(200).json({
+				errno : 0 ,
+				message :""
+			})
 
-
+		},function(err){
+			res.status(200).json({
+				errno : 1 ,
+				message:err
+			})
+		});
+}
 /*
  * test
  *
@@ -284,10 +324,9 @@ exports.delete = function(req,res,next){
 exports.test =  function(req,res,next){
 	var id = req.query.id ;
 	Category.getGrandsonById(id)
-		.then(function(list){
+		.then (function (list) {
 			res.json(list);		
-		},function(err){
-		
+		}, function (err) {
 			res.send(err);
 		})
 }

@@ -82,6 +82,32 @@ MetronicApp.factory('TopicModel',['$http','$q','$timeout',function($http, $q, $t
 				})
 				return promise;
 		}
+		/*
+		 * publish
+		 *
+		 */
+		PT.publish = function(){
+			
+			var url ='/admin/topic';
+			var defer = $q.defer() , promise = defer.promise ;
+			var that = this ;	
+			if(!that._id){
+				$timeout(function(){
+					defer.reject('_id must not empty!')			
+				},0);
+				return promise ;
+			} 
+			
+			$http.post(url + '/publish', {"_csrf": this._csrf, id: that._id})
+				.success(function(data){
+					if(data.errno == 0 ){
+						defer.resolve(that._id);
+					}else{
+						defer.reject('publish topic failed,id:'+that._id,',message:'+data.message); 
+					}		
+				})
+			return promise;
+		}
 
 		/*
 		 * delete
@@ -99,9 +125,7 @@ MetronicApp.factory('TopicModel',['$http','$q','$timeout',function($http, $q, $t
 				return promise ;
 			} 
 			
-			$http({method:"delete",url:url+'/'+ that._id,headers:{ 
-					'Content-Type'	:'application/x-www-form-urlencoded;charset=utf-8'
-				},params:{"_csrf":this._csrf}})
+			$http.post(url + '/del', {"_csrf": this._csrf, id: that._id})
 				.success(function(data){
 					if(data.errno == 0 ){
 						defer.resolve(that._id);

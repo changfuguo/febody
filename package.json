@@ -36,7 +36,7 @@
 	"pm2":"0.14.2",
 	"js-beautify":"1.5.7",
 	"marked":"0.3.3",
-	"highlight.js":"8.6.0",
+	"highlight.js":"8.8.0",
 	"lodash":"3.10.0",
 	"markdown-it": "4.4.0",
 	"multiline": "1.0.2",

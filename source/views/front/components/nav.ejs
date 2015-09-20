@@ -8,7 +8,7 @@
 	<ul class="<% if(top){%> menu  <%} else {%> sub-menu <%}%>">
 		<% menus.forEach(function(menu){ %>
 			<li  class="menu-item menu-item-type-taxonomy menu-item-object-category <% if (menu.children && menu.children.length >0) {%> menu-item-has-children<%}%>">
-				<a title = "<%= menu.text%>" href="<%= menu.a_attr.href%>" target="<%= menu.a_attr.target%>"><%= menu.text%></a>
+				<a title = "<%= menu.text%>" href="<%= menu.a_attr.href%>" target="_self"><%= menu.text%></a>
 					<%# 如果有孩子菜单 %>
 					<% if (menu.children && menu.children.length >0) {%>
 						<%- include('nav', {menus: menu.children,top:false}) %>

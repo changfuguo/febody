@@ -121,7 +121,7 @@ exports.processApp = function (){
 	var dest = this.build + "/" + folder.admin + '/js/';
 	var jsonPath = this.build + '/rev/**/*.json';
 	gulp.task(folder.admin + '-clean-app',function () {
-		$.shelljs.rm('-rf',that.build + '/admin/js/angularjs/app-*.js');
+		$.shelljs.rm('-rf',that.build + '/admin/js/angularjs/app*.js');
 	})
 	gulp.task(folder.admin + '-app',[folder.admin + '-clean-app'],function () {
 		gulp.src([jsonPath,that.source + '/admin/js/angularjs/app.js'])

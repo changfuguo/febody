@@ -3,8 +3,11 @@
 		<%var id =  comments[i]._id;%>
 	<li class="comment  <%if(tsp%2 == 0){%>even<%}else{%> odd <%}%>   thread-even depth-<%=level%> <%if(level==1){%>parent<%}%>" id="comment-<%=id%>">
 		<div id="div-comment-<%=id%>" class="comment-body">
+			<div class="reply">
+				<a class="comment-reply-link" href="/topic/<%=tid%>?replytocom=<%=id%>#respond" onclick='return addComment.moveForm("div-comment-<%=id%>", "<%=id%>", "respond", "<%=tid%>")'>回复</a>		
+			</div>
 			<div class="comment-author vcard">
-				<img alt="" src="https://www.baidu.com/img/baidu_jgylogo3.gif?v=39365285.gif" class="avatar avatar-32 photo avatar-default" height="32" width="32">			
+				<!--<img alt="" src="https://www.baidu.com/img/baidu_jgylogo3.gif?v=39365285.gif" class="avatar avatar-32 photo avatar-default" height="32" width="32">			-->
 				<cite class="fn">
 					<a href="javascript:void(0)" rel="external nofollow" class="url"><%=comments[i].author%>
 					</a>
@@ -15,13 +18,16 @@
 			<div class="comment-meta commentmetadata">
 				<a href="/topic/<%=tid%>#comment-<%=id%>">2014年2月20日 下午4:25</a>		
 			</div>
-			<p><%- markdown(comments[i].content)%><br>
-
-			<div class="reply">
-				<a class="comment-reply-link" href="/topic/<%=tid%>?replytocom=<%=id%>#respond" onclick='return addComment.moveForm("div-comment-<%=id%>", "<%=id%>", "respond", "<%=tid%>")'>回复</a>		
-			</div>
+			<p>
+				<%if(comments[i].status == 1){%>
+				<%- markdown(comments[i].content)%><br>
+				<%} else if(comments[i].status == 0){%>
+					帖子正在审核~
+				<%} else {%>
+					******
+				<%}%>
+			</p>
 		</div>
-		<%=tsp%>
 		<%tsp++;%>
 			<%if(comments[i].child && comments[i].child.length > 0 ) {%>	
 			<%- include('comment',{comments:comments[i].child,level:level+1,tid:tid,markdown:markdown,moment:moment,tsp:tsp})%>

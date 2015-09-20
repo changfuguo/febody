@@ -16,22 +16,21 @@ var multiline  = require('multiline');
 var jsxss      = require('xss');
 var config = require('../config/config');
 var moment = require('moment');
+var hljs = require('highlight.js');
 // Set default options
 var md = new MarkdownIt();
-
 md.set({
-  html:         true,        // Enable HTML tags in source
-  xhtmlOut:     false,        // Use '/' to close single tags (<br />)
-  breaks:       false,        // Convert '\n' in paragraphs into <br>
-  linkify:      true,        // Autoconvert URL-like text to links
-  typographer:  true,        // Enable smartypants and other sweet transforms
+	html:         true,        // Enable HTML tags in source
+	xhtmlOut:     false,        // Use '/' to close single tags (<br />)
+	breaks:       false,        // Convert '\n' in paragraphs into <br>
+	linkify:      true,        // Autoconvert URL-like text to links
+	typographer:  true        // Enable smartypants and other sweet transforms,
 });
 
 md.renderer.rules.fence = function (tokens, idx) {
   var token    = tokens[idx];
   var language = token.params && ('language-' + token.params) || '';
   language     = validator.escape(language);
-
   return '<pre class="prettyprint ' + language + '">'
     + '<code>' + validator.escape(token.content) + '</code>'
     + '</pre>';
@@ -41,14 +40,13 @@ md.renderer.rules.code_block = function (tokens, idx /*, options*/) {
   var token    = tokens[idx];
   var language = token.params && ('language-' + token.params) || '';
   language     = validator.escape(language);
-
   return '<pre class="prettyprint ' + language + '">'
     + '<code>' + validator.escape(token.content) + '</code>'
     + '</pre>';
 };
 
 md.renderer.rules.code_inline = function (tokens, idx /*, options*/) {
-  return '<code>' + validator.escape(tokens[idx].content) + '</code>';
+	return '<code>' + validator.escape(tokens[idx].content) + '</code>';
 };
 
 var myxss = new jsxss.FilterXSS({
@@ -61,7 +59,10 @@ var myxss = new jsxss.FilterXSS({
 });
 
 exports.markdown = function (text) {
-  return '<div class="markdown-text">' + myxss.process(md.render(text || '')) + '</div>';
+  text = '<div class="markdown-text">' + 
+		myxss.process(md.render(text || '')) + 
+	  '</div>';
+  return text;
 };
 
 exports.multiline = multiline;

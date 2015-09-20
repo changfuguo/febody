@@ -81,5 +81,28 @@ var getReplyById = exports.ReplyById = function (id) {
 	})
    return defer.promise ;
 }
+// update 
+exports.update = function(id,reply){
+
+	var defer = q.defer();
+	if(!id){
+		process.nextTick(function(){
+			defer.reject('_id 不能为空');		
+		});
+		return defer.promise;
+	}
+
+	if(reply['_id']) delete reply['_id'];
+	
+	Reply.update({_id: id} , {$set: reply}, function(err,item){
+		if(err) {
+			return defer.reject('update reply error'+err);
+		}		
+		defer.resolve(item);
+	})
+	return defer.promise;
+}
+
+
 exports.countByTopic = Reply.countByTopic;
 exports.getRepliesByTopic = Reply.getRepliesByTopic;

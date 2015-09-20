@@ -23,7 +23,9 @@ function($rootScope, $scope, settings,Topic,Category,SecurService) {
 					})		
 				})		
 			});
-
+	$scope.formatTime = function (t){
+		return moment(t).format('YY-MM-DD HH:mm:ss a')
+	}
 	//condition
 	$scope.start_open = false;
 	$scope.end_open = false;
@@ -63,12 +65,45 @@ function($rootScope, $scope, settings,Topic,Category,SecurService) {
 	con._csrf = SecurService.csrf();
 	//search by condition filter
     $scope.search = function(){
-			
 		Topic.getList(con)
-			
 			.then(function(data){
 				$scope.topics = data.listInfo;	
 			})
-	}	
+	}
+
+	$scope.search();
+	// delete topic
+	$scope.del = function (id) {
+		var topic  = new Topic()
+			topic._id = id;
+			topic["_csrf"] = SecurService.csrf();
+			topic.del()
+			.then(function (__){
+				if(id ==  __){
+					con.currentPage = 1 ;
+					$scope.search();
+				}		
+			},function (reson){
+				alert(reson);
+					
+			})
+	}
+
+	$scope.publish = function (id) {
+		var topic  = new Topic()
+			topic._id = id;
+			topic["_csrf"] = SecurService.csrf();
+			topic.publish()
+			.then(function (__){
+				if(id ==  __){
+					con.currentPage = 1 ;
+					$scope.search();
+				}		
+			},function (reson){
+				alert(reson);
+					
+			})
+
+	}
 
 }]);

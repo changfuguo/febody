@@ -242,7 +242,6 @@ exports.updateCommentNumber = function (id) {
 	var defer  = q.defer(), promise = defer.promise;
 	Reply.countByTopic(id, 1)
 		.then(function (number) {
-			console.log(number,id);
 			Topic.update({_id: id }, {$set :{reply_count: number, last_reply_at: +new Date()}}, function (err, raw) {
 				if(err) return defer.reject('更新文章信息失败:' +err);
 				defer.resolve(raw)
