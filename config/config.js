@@ -15,10 +15,10 @@ var config = {
             name : "前端body",
             keywords:"javascript,html,css",
             port : 13003 ,
-            host :"http://182.92.98.242",
-            session_secret:'febody-session-secret', // session secret 
+            host :"http://127.0.0.1",
+            session_secret:'yours secret', // session secret 
             session_timeout : 24 * 60 * 60,
-            auth_cookie_name:'febody',              // powerful user name
+            auth_cookie_name:'your cookie name',              // powerful user name
             //topic list count
             list_topic_count : 20 ,
             admins:{user_login_name : true },
